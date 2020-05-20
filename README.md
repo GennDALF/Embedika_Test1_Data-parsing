@@ -10,7 +10,7 @@
 | :--- | :---: | :---: |
 | ```get_price()``` <br/> Цена на заданную дату | date_string <br/> "DD MM YYYY" | float <br/> |
 | ```get_average_price()``` <br/> Средняя цена за промежуток времени | date_range_string <br/> "DD MM YYYY - <br/>DD MM YYYY" | float <br/> |
-| ```get_min_max_prices()``` <br/> Максимальная и минимальная цены за промежуток времени |date_range_string <br/> "DD MM YYYY - <br/>DD MM YYYY" | JSON str * |
+| ```get_min_max_prices()``` <br/> Максимальная и минимальная цены за промежуток времени |date_range_string <br/> "DD MM YYYY - <br/>DD MM YYYY" | JSON str |
 | ```get_stats()``` <br/> Статистика по загруженным данным |   –   | JSON str * |
 
 \* structure of ```get_stats()``` JSON output is:

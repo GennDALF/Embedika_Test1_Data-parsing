@@ -17,11 +17,11 @@
 ```
 [
   {
-    "all entries": <int>,  # number of all entries 
-    "start of monitoring": <str>,  # date of first monitoring period start: "DD mmmm YYYY"
-    "end of monitoring": <str>,  # date of last monitoring period end: "DD mmmm YYYY"
-    "global min price": [<float>, <str>],  # list of minimal price and corresponding date
-    "global max price": [<float>, <str>]  # list of maximal price and corresponding date
+    "all entries": <int>,                   # number of all entries 
+    "start of monitoring": <str>,           # date of first monitoring period start: "DD mmmm YYYY"
+    "end of monitoring": <str>,             # date of last monitoring period end: "DD mmmm YYYY"
+    "global min price": [<float>, <str>],   # list of minimal price and corresponding date
+    "global max price": [<float>, <str>]    # list of maximal price and corresponding date
   }
 ]
 ```

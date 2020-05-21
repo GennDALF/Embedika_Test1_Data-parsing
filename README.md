@@ -2,26 +2,48 @@
 ### Задание
 >Необходимо распарсить открытые данные о цене на сырую нефть марки “Юралс” и предоставить к ним доступ по API ([данные](https://data.gov.ru/opendata/7710349494-urals))
 #
-### Описание API
+### Введение
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Исходя из структуры данных в предоставленном CSV файле было решено использовать ```datetime.date``` объекты в качестве ключей словаря, в котором будут хранится данные во время обработки. Вспомогательные функции ```set_date()``` и ```set_date_range()``` служат для работы с объектами даты.<br/><br/>
 
-
+### Описание методов API
 
 | Метод | Параметры | Возвращаемый результат |
 | :--- | :---: | :---: |
-| ```get_price()``` <br/> Цена на заданную дату | date_string <br/> "DD MM YYYY" | float <br/> |
-| ```get_average_price()``` <br/> Средняя цена за промежуток времени | date_range_string <br/> "DD MM YYYY - <br/>DD MM YYYY" | float <br/> |
-| ```get_min_max_prices()``` <br/> Максимальная и минимальная цены за промежуток времени |date_range_string <br/> "DD MM YYYY - <br/>DD MM YYYY" | JSON str |
-| ```get_stats()``` <br/> Статистика по загруженным данным |   –   | JSON str * |
+| ```get_price()``` <br/> Цена на заданную дату | ```date_string``` <br/> "DD MM YYYY" | float |
+| ```get_average_price()``` <br/> Средняя цена за промежуток времени | ```date_range_string``` <br/> "DD MM YYYY - <br/>DD MM YYYY" | float |
+| ```get_min_max_prices()``` <br/> Максимальная и минимальная цены за промежуток времени | ```date_range_string``` <br/> "DD MM YYYY - <br/> DD MM YYYY" | JSON str \* |
+| ```get_stats()``` <br/> Статистика по загруженным данным |   –   | JSON str \*\* |
 
-\* structure of ```get_stats()``` JSON output is:
+\* структура JSON вывода функции ```get_min_max_prices()```:
 ```
 [
   {
-    "all entries": <int>,                   # number of all entries 
-    "start of monitoring": <str>,           # date of first monitoring period start: "DD mmmm YYYY"
-    "end of monitoring": <str>,             # date of last monitoring period end: "DD mmmm YYYY"
-    "global min price": [<float>, <str>],   # list of minimal price and corresponding date
-    "global max price": [<float>, <str>]    # list of maximal price and corresponding date
+    "min": <float>,
+    "max": <float>
   }
 ]
+```
+\*\* структура JSON вывода функции ```get_stats()```:
+```
+[
+  {
+    "all entries": <int>,                   # общее количество периодов мониторинга цен
+    "start of monitoring": <str>,           # дата начала мониторинга цен
+    "end of monitoring": <str>,             # дата окончания мониторинга цен
+    "global min price": [<float>, <str>],   # список из минимальной цены и даты начала 
+                                              # соответствующего периода мониторинга
+    "global max price": [<float>, <str>]    # список из максимальной цены и даты начала 
+                                              # соответствующего периода мониторинга
+  }
+]
+```
+Даты выводятся в формате "DD mmmm YYYY", например "15 Январь 2013".<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для функций, работающих с диапазонами, установлено следующее правило: если одна из границ диапазона выходит за пределы охвата базы данных, то в качестве ближайшей границы будет взято начало либо окончание мониторинга (см. пример).
+
+### Примеры
+```
+>>> get_price("03 11 2019")
+447.7
+>>> get_average_price("04 08 2012 - 16 10 2013")
+776.7
 ```

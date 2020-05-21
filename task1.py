@@ -9,18 +9,8 @@ lc.setlocale(lc.LC_ALL, 'ru_RU.UTF-8')
 table = {}
 # text and number matching of months
 months = {
-    "янв": 1,
-    "фев": 2,
-    "мар": 3,
-    "апр": 4,
-    "май": 5,
-    "июн": 6,
-    "июл": 7,
-    "авг": 8,
-    "сен": 9,
-    "окт": 10,
-    "ноя": 11,
-    "дек": 12
+    "янв": 1, "фев": 2, "мар": 3, "апр": 4, "май": 5, "июн": 6, 
+    "июл": 7, "авг": 8, "сен": 9, "окт": 10, "ноя": 11, "дек": 12
 }
 months_reverse = {v: k for k, v in months.items()}
 # reading file with data

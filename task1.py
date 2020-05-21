@@ -39,8 +39,6 @@ with open("data-20200316T1222.csv", newline='', encoding="windows-1251") as file
             # only unique monitoring ranges are allowed
             table[date] = float(row[2].replace(',', '.'))
 
-# print(data)
-
 
 # auxiliary function adjusting input date to monitoring ranges
 def set_date(date, end=False, first_day=15):
